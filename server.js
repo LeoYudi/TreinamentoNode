@@ -7,6 +7,7 @@ const app = express();
 const bp = require('body-parser');
 
 const LinkModel = require('./domain/model/link');
+const mailer = require('./domain/mailer');
 
 app.use(bp.json());
 
@@ -36,4 +37,9 @@ app.get('/:slug', (req, res) => {
   const { slug } = req.params;
   const link = await LinkModel.findOne({ slug: slug });
   res.redirect(link.url);
+});
+
+app.post('/email', (req, res) => {
+  const { emails, subject, text } = req.body;
+  mailer(emails, subject, text);
 });
