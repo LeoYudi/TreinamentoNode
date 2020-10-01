@@ -26,3 +26,8 @@ app.post('/add', (req, res) => {
   LinkModel.create({ slug: slug, url: url });
   res.send({ status: 200 });
 });
+
+app.get('allSlugs', (req, res) => {
+  const links = LinkModel.find({});
+  res.send(links);
+});
