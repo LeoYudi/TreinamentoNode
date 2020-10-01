@@ -23,11 +23,11 @@ require('./infrastructure/database/mongodb')();
 
 app.post('/add', (req, res) => {
   const { url, slug } = req.body;
-  LinkModel.create({ slug: slug, url: url });
+  await LinkModel.create({ slug: slug, url: url });
   res.send({ status: 200 });
 });
 
-app.get('allSlugs', (req, res) => {
-  const links = LinkModel.find({});
+app.get('/allSlugs', (req, res) => {
+  const links = await LinkModel.find({});
   res.send(links);
 });
