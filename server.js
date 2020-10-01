@@ -42,4 +42,5 @@ app.get('/:slug', (req, res) => {
 app.post('/email', (req, res) => {
   const { emails, subject, text } = req.body;
   mailer(emails, subject, text);
+  res.send({ msg: 'ok' });
 });
