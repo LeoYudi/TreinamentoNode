@@ -7,7 +7,6 @@ const app = express();
 const bp = require('body-parser');
 
 const LinkModel = require('./domain/model/link');
-const mailer = require('./domain/mailer');
 
 app.use(bp.json());
 
@@ -24,12 +23,12 @@ require('./infrastructure/database/mongodb')();
 
 app.post('/add', (req, res) => {
   const { url, slug } = req.body;
-  await LinkModel.create({ slug: slug, url: url });
+  LinkModel.create({ slug: slug, url: url });
   res.send({ status: 200 });
 });
 
-app.get('/allSlugs', (req, res) => {
-  const links = await LinkModel.find({});
+app.get('allSlugs', (req, res) => {
+  const links = LinkModel.find({});
   res.send(links);
 });
 
