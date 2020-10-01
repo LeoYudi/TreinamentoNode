@@ -7,6 +7,7 @@ const app = express();
 const bp = require('body-parser');
 
 const LinkModel = require('./domain/model/link');
+const mailer = require('./domain/mailer');
 
 app.use(bp.json());
 
