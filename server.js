@@ -31,3 +31,9 @@ app.get('/allSlugs', (req, res) => {
   const links = await LinkModel.find({});
   res.send(links);
 });
+
+app.get('/:slug', (req, res) => {
+  const { slug } = req.params;
+  const link = await LinkModel.findOne({ slug: slug });
+  res.redirect(link.url);
+});
