@@ -35,7 +35,7 @@ app.get('allSlugs', (req, res) => {
 
 app.get('/:slug', (req, res) => {
   const { slug } = req.params;
-  const link = await LinkModel.findOne({ slug: slug });
+  const link = LinkModel.findOne({ slug: slug });
   res.redirect(link.url);
 });
 
